@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { Tooltip, Button } from "antd";
 import { WalletOutlined, SwapOutlined } from "@ant-design/icons";
 
 export default function Balance(props) {
-  const [eth] = useState(props.eth);
   return (
     <div style={{ display: "flex", flexDirection: "row", marginRight: 20 }}>
       <div
@@ -40,13 +39,15 @@ export default function Balance(props) {
                 alignItems: "center",
               }}
             >
-              <p style={{ color: "white", fontSize: 24, margin: 0, marginRight: 5 }}>{eth}</p> ETH
+              <p style={{ color: "white", fontSize: 24, margin: 0, marginRight: 5 }}>{props.eth}</p>
+              ETH
             </p>
           </div>
           <Tooltip title="Refresh">
             <Button
               style={{ backgroundColor: "transparent", borderColor: "transparent" }}
               icon={<SwapOutlined style={{ color: "white", fontSize: 32, margin: 0 }} />}
+              onClick={() => props.refresh()}
             />
           </Tooltip>
         </div>

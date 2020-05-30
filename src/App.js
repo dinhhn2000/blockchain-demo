@@ -12,7 +12,7 @@ function App(props) {
   };
 
   const routes =
-    localStorage.getItem("token") === null ? (
+    localStorage.getItem("publicKey") === null ? (
       <Switch>
         <Route exact path="/signIn" component={SignIn} />
         <Route path="/signUp" component={SignUp} />

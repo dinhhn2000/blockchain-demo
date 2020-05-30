@@ -1,6 +1,10 @@
 import React, { useState } from "react";
+import axios from "axios";
 import { Input, Button, message } from "antd";
 import { DollarOutlined, WalletOutlined, SendOutlined } from "@ant-design/icons";
+
+require("dotenv").config();
+const apiUrl = process.env.REACT_APP_API_URL;
 
 export default function SendTransaction() {
   const [amount, setAmount] = useState(0);
@@ -15,8 +19,24 @@ export default function SendTransaction() {
   };
 
   const sendTransaction = () => {
-    console.log("Amount: ", amount);
-    console.log("Address: ", address);
+    let url = apiUrl + "send";
+
+    axios({
+      method: "post",
+      url: url,
+      data: {
+        privateKey: localStorage.getItem("privateKey"),
+        from: localStorage.getItem("publicKey"),
+        to: address,
+        amount,
+      },
+    })
+      .then((result) => {
+        message.info(result.data.message);
+      })
+      .catch((err) => {
+        message.error("Something wrong happened");
+      });
   };
 
   return (

@@ -24,7 +24,14 @@ const AccountMenu = (
       </a>
     </Menu.Item>
     <Menu.Item>
-      <a target="_blank" rel="noopener noreferrer" href="/signout">
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="/signout"
+        onClick={() => {
+          localStorage.clear();
+        }}
+      >
         <LogoutOutlined style={{ marginRight: 10 }} />
         Logout
       </a>
@@ -33,7 +40,7 @@ const AccountMenu = (
 );
 
 export default function CustomLayout(props) {
-  return localStorage.getItem("token") === null ? (
+  return localStorage.getItem("publicKey") === null ? (
     <div>{props.children}</div>
   ) : (
     <Layout style={{ height: "100vh" }}>
@@ -57,8 +64,7 @@ export default function CustomLayout(props) {
         <Sider width={200} className="site-layout-background">
           <Menu
             mode="inline"
-            defaultSelectedKeys={["1"]}
-            defaultOpenKeys={["sub1"]}
+            // defaultSelectedKeys={["1"]}
             style={{ height: "100%", borderRight: 0 }}
           >
             <Menu.Item

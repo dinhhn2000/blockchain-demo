@@ -1,7 +1,8 @@
 import React from "react";
 import { Form, Input, Button, Checkbox } from "antd";
+import { NavLink } from "react-router-dom";
 
-export default function SignInForm() {
+export default function SignInForm(props) {
   const layout = {
     labelCol: {
       span: 6,
@@ -24,8 +25,8 @@ export default function SignInForm() {
 
   const onFinish = (values) => {
     console.log("Success:", values);
-    localStorage.setItem("token", "abcxyz");
-    window.location.replace("/");
+    localStorage.setItem("username", values.username);
+    props.submit(values);
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -70,8 +71,19 @@ export default function SignInForm() {
         <Input.Password />
       </Form.Item>
 
-      <Form.Item {...tailLayout} name="remember" valuePropName="checked">
+      <Form.Item
+        {...tailLayout}
+        style={{ marginBottom: 0 }}
+        name="remember"
+        valuePropName="checked"
+      >
         <Checkbox>Remember me</Checkbox>
+      </Form.Item>
+
+      <Form.Item {...tailLayout} name="remember" valuePropName="checked">
+        <NavLink to="/signUp" exact>
+          Don't have account?
+        </NavLink>
       </Form.Item>
 
       <Form.Item {...btnLayout}>

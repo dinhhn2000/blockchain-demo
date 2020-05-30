@@ -32,7 +32,18 @@ export default function Address(props) {
           }}
         >
           <h1 style={{ color: "white", fontSize: 32, margin: 0 }}>Address</h1>
-          <p style={{ color: "white", fontSize: 18, wordBreak: "break-all" }}>{address}</p>
+          <p
+            style={{
+              color: "white",
+              fontSize: 18,
+              wordBreak: "break-all",
+              lineHeight: "1.5em",
+              height: "3em",
+              overflow: "hidden",
+            }}
+          >
+            {address}
+          </p>
           <Tooltip title="Copy">
             <CopyToClipboard text={address}>
               <Button

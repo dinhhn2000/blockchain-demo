@@ -1,7 +1,7 @@
 import React from "react";
 import { Form, Input, Button } from "antd";
 
-export default function SignUpForm() {
+export default function SignUpForm(props) {
   const layout = {
     labelCol: {
       span: 6,
@@ -17,9 +17,7 @@ export default function SignUpForm() {
   };
 
   const onFinish = (values) => {
-    console.log("Success:", values);
-    localStorage.setItem("token", "abcxyz");
-    window.location.replace("/");
+    props.submit(values);
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -58,6 +56,10 @@ export default function SignUpForm() {
           {
             required: true,
             message: "Please input your password!",
+          },
+          {
+            min: 3,
+            message: "Your password length must greater than 3 characters",
           },
         ]}
       >

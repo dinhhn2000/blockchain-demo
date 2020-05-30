@@ -5,6 +5,9 @@ import SignUp from "./containers/Auth/SignUp/SignUp";
 import CustomLayout from "./components/Layouts/layout";
 import SendTransaction from "./containers/Main/SendTransaction";
 import InProgress from "./containers/InProgress/InProgress";
+import Statistics from "./containers/Main/Statitics";
+import WalletStatistics from "./containers/Main/WalletStatistics";
+import Dashboard from "./containers/Main/Dashboard";
 
 function App(props) {
   const NoMatch = (props) => {
@@ -22,8 +25,10 @@ function App(props) {
       </Switch>
     ) : (
       <Switch>
-        <Route exact path="/" component={SignIn} />
+        <Route exact path="/" component={Dashboard} />
         <Route exact path="/send-transaction" component={SendTransaction} />
+        <Route exact path="/statistics" component={Statistics} />
+        <Route exact path="/wallet-statistics" component={WalletStatistics} />
         <Route path="*">
           <InProgress />
         </Route>

@@ -24,8 +24,10 @@ export default function SignIn() {
         let { publicKey } = result.data;
         let errorMessage = result.data.message;
         if (!errorMessage) {
+          localStorage.setItem("username", values.username);
+          localStorage.setItem("privateKey", values.privateKey);
           localStorage.setItem("publicKey", publicKey);
-          window.location.reload();
+          window.location.replace("/");
         } else message.error(errorMessage);
       })
       .catch((err) => {

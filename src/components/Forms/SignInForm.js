@@ -25,7 +25,6 @@ export default function SignInForm(props) {
 
   const onFinish = (values) => {
     console.log("Success:", values);
-    localStorage.setItem("username", values.username);
     props.submit(values);
   };
 
@@ -65,6 +64,19 @@ export default function SignInForm(props) {
           {
             required: true,
             message: "Please input your password!",
+          },
+        ]}
+      >
+        <Input.Password />
+      </Form.Item>
+      
+      <Form.Item
+        label="Private key"
+        name="privateKey"
+        rules={[
+          {
+            required: true,
+            message: "Please input your private key!",
           },
         ]}
       >

@@ -18,23 +18,23 @@ const { Header, Content, Sider } = Layout;
 const AccountMenu = (
   <Menu>
     <Menu.Item>
-      <a target="_blank" rel="noopener noreferrer" href="/settings">
+      <NavLink to="/" exact>
         <SettingOutlined style={{ marginRight: 10 }} />
         Settings
-      </a>
+      </NavLink>
     </Menu.Item>
     <Menu.Item>
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="/signout"
+      <NavLink
+        to="/"
+        exact
         onClick={() => {
           localStorage.clear();
+          window.location.reload();
         }}
       >
         <LogoutOutlined style={{ marginRight: 10 }} />
         Logout
-      </a>
+      </NavLink>
     </Menu.Item>
   </Menu>
 );
@@ -67,11 +67,7 @@ export default function CustomLayout(props) {
             // defaultSelectedKeys={["1"]}
             style={{ height: "100%", borderRight: 0 }}
           >
-            <Menu.Item
-              icon={<DashboardOutlined style={{ fontSize: 25 }} />}
-              key="1"
-              onClick={() => console.log("clicked")}
-            >
+            <Menu.Item icon={<DashboardOutlined style={{ fontSize: 25 }} />} key="1">
               <NavLink to="/" exact>
                 Dashboard
               </NavLink>
@@ -95,9 +91,18 @@ export default function CustomLayout(props) {
             <SubMenu
               key="sub3"
               icon={<PieChartOutlined style={{ fontSize: 25 }} />}
-              title="Statitics"
+              title="Statistics"
             >
-              <Menu.Item key="4">Account statitics</Menu.Item>
+              <Menu.Item key="4">
+                <NavLink to="/wallet-statistics" exact>
+                  Account statistics
+                </NavLink>
+              </Menu.Item>
+              <Menu.Item key="5">
+                <NavLink to="/statistics" exact>
+                  System statistics
+                </NavLink>
+              </Menu.Item>
             </SubMenu>
           </Menu>
         </Sider>
